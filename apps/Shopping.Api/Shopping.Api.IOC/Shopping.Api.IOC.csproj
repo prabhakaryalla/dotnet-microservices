@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.19" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shopping.Api.Managers\Shopping.Api.Managers.csproj" />
+    <ProjectReference Include="..\Shopping.Api.OpenApi\Shopping.Api.OpenApi.csproj" />
+    <ProjectReference Include="..\Shopping.Api.Services\Shopping.Api.Services.csproj" />
+  </ItemGroup>
+
+</Project>
