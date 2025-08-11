@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+
+  shopping.api: 
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: shoppingapi
+        container_name: shoppingapi
+        ports:
+        - "7000:8080"
+        environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        networks:
+        - my_network
+
+  shopping.client:
+    image: ${DOCKER_REGISTRY-}shoppingclient
+    build:
+      context: .
+      dockerfile: Shopping.Client/Dockerfile
+    ports:
+        - "7001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ShoppingApiUrl=http://shoppingapi:8080
+    networks:
+      - my_network
+    depends_on:
+    - shopping.api
+
+networks:
+    my_network:
+     driver: bridge
