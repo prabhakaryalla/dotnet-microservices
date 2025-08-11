@@ -1,0 +1,16 @@
+﻿services:
+    shoppingwebapi: 
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: shoppingapi
+        container_name: webapi
+        ports:
+        - "7000:8080"
+        environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        networks:
+        - my_network
+networks:
+    my_network:
+     driver: bridge
