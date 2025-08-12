@@ -12,6 +12,7 @@ WORKDIR /src
 COPY ["Shopping.Api.Host/Shopping.Api.Host.csproj", "Shopping.Api.Host/"]
 COPY ["Shopping.Api.Controllers/Shopping.Api.Controllers.csproj", "Shopping.Api.Controllers/"]
 COPY ["Shopping.Api.Contracts/Shopping.Api.Contracts.csproj", "Shopping.Api.Contracts/"]
+COPY ["Shopping.Api.Middlewares/Shopping.Api.Middlewares.csproj", "Shopping.Api.Middlewares/"]
 COPY ["Shopping.Api.IOC/Shopping.Api.IOC.csproj", "Shopping.Api.IOC/"]
 COPY ["Shopping.Api.Managers/Shopping.Api.Managers.csproj", "Shopping.Api.Managers/"]
 COPY ["Shopping.Api.OpenApi/Shopping.Api.OpenApi.csproj", "Shopping.Api.OpenApi/"]
