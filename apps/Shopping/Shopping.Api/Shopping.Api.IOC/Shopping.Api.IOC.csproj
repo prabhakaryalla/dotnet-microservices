@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shopping.Api.Controllers\Shopping.Api.Controllers.csproj" />
     <ProjectReference Include="..\Shopping.Api.Managers\Shopping.Api.Managers.csproj" />
+    <ProjectReference Include="..\Shopping.Api.Middlewares\Shopping.Api.Middlewares.csproj" />
     <ProjectReference Include="..\Shopping.Api.OpenApi\Shopping.Api.OpenApi.csproj" />
     <ProjectReference Include="..\Shopping.Api.Services\Shopping.Api.Services.csproj" />
   </ItemGroup>

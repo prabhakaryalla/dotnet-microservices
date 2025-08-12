@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Shopping.Api.Contracts.Services;
+using Shopping.Api.Contracts.Interfaces.Services;
 using Shopping.Api.Services.Products;
 
 namespace Shopping.Api.IOC

@@ -1,5 +1,5 @@
-﻿using Shopping.Api.Contracts.Domain;
-using Shopping.Api.Contracts.Services;
+﻿using Shopping.Api.Contracts.Interfaces.Services;
+using Shopping.Api.Contracts.Models;
 
 namespace Shopping.Api.Services.Products
 {

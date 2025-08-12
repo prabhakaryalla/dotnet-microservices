@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Host", "Shopping.Api.Host\Shopping.Api.Host.csproj", "{211F5925-F02C-4F5A-9544-8C3014C569CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.Host", "Shopping.Api.Host\Shopping.Api.Host.csproj", "{211F5925-F02C-4F5A-9544-8C3014C569CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Services", "Shopping.Api.Services\Shopping.Api.Services.csproj", "{23070568-CCD9-4EA4-8B3D-C951AA3A4766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.Services", "Shopping.Api.Services\Shopping.Api.Services.csproj", "{23070568-CCD9-4EA4-8B3D-C951AA3A4766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.IOC", "Shopping.Api.IOC\Shopping.Api.IOC.csproj", "{1F768539-B448-45C2-B1FC-9BCEECC0932F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.IOC", "Shopping.Api.IOC\Shopping.Api.IOC.csproj", "{1F768539-B448-45C2-B1FC-9BCEECC0932F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Contracts", "Shopping.Api.Contracts\Shopping.Api.Contracts.csproj", "{DF5BFEC7-6EA1-4483-ABDC-67CBCE29E7DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.Contracts", "Shopping.Api.Contracts\Shopping.Api.Contracts.csproj", "{DF5BFEC7-6EA1-4483-ABDC-67CBCE29E7DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Managers", "Shopping.Api.Managers\Shopping.Api.Managers.csproj", "{CBA2A40C-69B9-489A-9C8C-7D1B0BF32461}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.Managers", "Shopping.Api.Managers\Shopping.Api.Managers.csproj", "{CBA2A40C-69B9-489A-9C8C-7D1B0BF32461}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Controllers", "Shopping.Api.Controllers\Shopping.Api.Controllers.csproj", "{7B0D47C7-7A8E-4495-8517-A4FF00D41137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.Controllers", "Shopping.Api.Controllers\Shopping.Api.Controllers.csproj", "{7B0D47C7-7A8E-4495-8517-A4FF00D41137}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.OpenApi", "Shopping.Api.OpenApi\Shopping.Api.OpenApi.csproj", "{142E8F76-80F3-430B-B96F-4CF8F535B557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Api.OpenApi", "Shopping.Api.OpenApi\Shopping.Api.OpenApi.csproj", "{142E8F76-80F3-430B-B96F-4CF8F535B557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Api.Middlewares", "Shopping.Api.Middlewares\Shopping.Api.Middlewares.csproj", "{5B711F89-143A-44FA-88C3-27FEB7443A0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{142E8F76-80F3-430B-B96F-4CF8F535B557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{142E8F76-80F3-430B-B96F-4CF8F535B557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{142E8F76-80F3-430B-B96F-4CF8F535B557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B711F89-143A-44FA-88C3-27FEB7443A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B711F89-143A-44FA-88C3-27FEB7443A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B711F89-143A-44FA-88C3-27FEB7443A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B711F89-143A-44FA-88C3-27FEB7443A0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,27 +2,52 @@ using Shopping.Api.IOC;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwagger();
-builder.Services.AddManagers();
-builder.Services.AddServices();
-builder.Services.AddController();
+
+//builder.Host.UseSerilog((ctx, config) => config.ReadFrom.Configuration(ctx.Configuration))
+//            .ConfigureAppConfiguration((ctx) => ctx.AddMachineConfig());
 
 
-var app = builder.Build();
+#region  Add services to the container.
+IServiceCollection services = builder.Services;
 
 
-//Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+services.AddHttpContextAccessor();
+services.AddOptions();
+services.AddConfigurations();
+//services.AddAutoMapper();
+services.AddServices();
+services.AddManagers();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerSettings();
+services.AddControllersSettings();
+services.AddAuthorizations();
+
+
+
+services.Configure<RouteOptions>(routeOptions =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    routeOptions.LowercaseUrls = true;
+});
 
 
+WebApplication app = builder.Build();
+#endregion
+
+
+#region configure the HTTP request pipeline
+app.UseStaticFiles();
+app.UseSwaggerSettings();
+app.UseClientConfiguration();
+//app.UseApiHttpLogging();
+app.UseGlobalErrorHandler();
+//app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
 app.Run();
 
+
+#endregion

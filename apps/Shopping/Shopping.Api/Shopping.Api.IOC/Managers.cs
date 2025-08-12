@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Shopping.Api.Contracts.Managers;
+using Shopping.Api.Contracts.Interfaces.Managers;
 using Shopping.Api.Managers;
 using System;
 using System.Collections.Generic;
