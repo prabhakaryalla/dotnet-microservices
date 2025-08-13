@@ -1,0 +1,83 @@
+using AutoMapper;
+using Microsoft.Extensions.Logging;
+using System.Text;
+using UMB.BaaS.IVR.Contracts.Domains;
+using UMB.BaaS.IVR.Contracts.Interfaces;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using UMB.BaaS.IVR.Contracts.Extensions;
+
+
+namespace UMB.BaaS.IVR.Services;
+
+
+public class CommonIntegrationService<T>
+{
+    protected readonly HttpClient _httpClient;
+    protected readonly ILogger<T> _logger;
+    protected readonly IMapper _mapper;
+    protected readonly IClientConfiguration _clientConfiguration;
+
+
+    public CommonIntegrationService(IMapper mapper, HttpClient httpClient, ILogger<T> logger, IClientConfiguration clientConfiguration)
+    {
+        _httpClient = httpClient;
+        _logger = logger;
+        _mapper = mapper;
+        _clientConfiguration = clientConfiguration;
+    }
+
+
+    protected async Task<Response<R>> SendRequestAsync<R, U>(HttpMethod httpMethod, string requestUri, U? requestBody = null, CancellationToken cancellationToken = default) where U : class
+    {
+        HttpRequestMessage request = new(httpMethod, requestUri);
+        GetApiHeaders(request);
+        if (requestBody != null)
+        {
+            request.Content = new StringContent(JsonConvert.SerializeObject(requestBody, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }), Encoding.UTF8, "application/json");
+            _logger.LogInformation($"Request to IVR Integration API {requestUri} - {await request.Content.ReadAsStringAsync()}");
+        }
+
+
+        using HttpResponseMessage responseMessage = await _httpClient.SendAsync(request, cancellationToken);
+
+
+        Response<R> response = responseMessage.IsSuccessStatusCode ?
+            new Response<R>(new HttpStatus(responseMessage.StatusCode), responseMessage.Content.ReadAsJsonAsync<R>().Result) :
+            new Response<R>(_mapper.Map<HttpStatus>(responseMessage.Content.ReadAsJsonAsync<StatusResponse>().Result?.OperationResults?.FirstOrDefault()));
+
+
+        _logger.LogInformation($"Response from IVR Integration API {requestUri} - status code: {(int)response.HttpStatus?.StatusCode!} and data (if available): {(response.HttpStatus.IsSuccessful ? JsonConvert.SerializeObject(response.Data) : "null")}");
+
+
+        return response;
+    }
+
+
+    private void GetApiHeaders(HttpRequestMessage request)
+    {
+        var headers = AddRequestHeaders();
+        foreach (KeyValuePair<string, string> header in headers)
+        {
+            request.Headers.Add(header.Key, header.Value);
+        }
+    }
+
+
+    private List<KeyValuePair<string, string>> AddRequestHeaders()
+    {
+        List<KeyValuePair<string, string>> headers = new()
+        {
+            new("x-partner-name", _clientConfiguration.PartnerName),
+            new("RequestId", _clientConfiguration.RequestId.ToString())
+        };
+        if (!string.IsNullOrWhiteSpace(_clientConfiguration.UserId))
+            headers.Add(new("x-user-id", _clientConfiguration.UserId));
+        if (!string.IsNullOrWhiteSpace(_clientConfiguration.FundGroupId))
+            headers.Add(new("x-fundgroup-id", _clientConfiguration.FundGroupId));
+        return headers;
+    }
+}
+
+---------------------
+
